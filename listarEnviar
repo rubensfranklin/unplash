@@ -1,0 +1,60 @@
+#importações
+import os
+import datetime
+from datetime import datetime
+import win32com.client as win32
+
+
+def listador():
+
+    pasta = './drivers'
+    lista_arquivos= []
+    #arquivo_quero = "teste1.txt"
+    for diretorio, subpastas, arquivos in os.walk(pasta):
+           for arquivo in arquivos:
+                             if '.txt' in arquivo: 
+                               lista_arquivos.append(arquivo) 
+    #return nome_arquivos
+    print( lista_arquivos)
+    
+   
+                      
+def buscar_faltante():
+    pass
+ #      print(listagem )
+       
+
+def envia_email():
+       #lista dea arquivos
+   listagem = 'testes'
+      #configura o outlook
+   outlook =  win32.Dispatch('outlook.application')
+   #cria um e-mail
+   email = outlook.CreateItem(0)
+   # Destinatario
+   email.To = 'rubens.franklin@gmail.com'
+    # Assunto da mensagem
+   email.Subject = ' Atraso na disponibilização Automatizando '
+   # Corpo da mensagem
+   email.HTMLBody = f"""
+
+<p>Olá prezados, até o momento não recebemos os arquivos {listagem} , teriam uma previsão
+por favor,</p>
+
+<p> Abs </p>
+<p>
+Area de Planejamento </p>
+
+"""
+ # finalizando e-mail
+   email.Send() 
+
+ 
+def  init_rz():
+
+ listador()
+ buscar_faltante()
+ envia_email()
+
+
+init_rz()
